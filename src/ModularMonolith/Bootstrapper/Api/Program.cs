@@ -1,7 +1,3 @@
-using Basket;
-using Catalog;
-using Order;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
@@ -11,5 +7,8 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseCatalogModule()
+   .UseBasketModule()
+   .UseOrderModule();
 
 app.Run();
