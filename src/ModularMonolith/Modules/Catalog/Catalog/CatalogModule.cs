@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Shared.Data.Interceptors;
 
 namespace Catalog
@@ -9,10 +10,20 @@ namespace Catalog
         public static IServiceCollection AddCatalogModule(this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
+
+
             var connectionString = configuration.GetConnectionString("Database");
+
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
             services.AddDbContext<CatalogDbContext>((sp, options) =>
             {
-                options.AddInterceptors(new AuditableEntityInterceptor());
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 options.UseNpgsql(connectionString);
             });
 
