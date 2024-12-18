@@ -1,5 +1,7 @@
 ﻿
 
+using Shared.Data.Interceptors;
+
 namespace Catalog
 {
     public static class CatalogModule
@@ -10,6 +12,7 @@ namespace Catalog
             var connectionString = configuration.GetConnectionString("Database");
             services.AddDbContext<CatalogDbContext>((sp, options) =>
             {
+                options.AddInterceptors(new AuditableEntityInterceptor());
                 options.UseNpgsql(connectionString);
             });
 
