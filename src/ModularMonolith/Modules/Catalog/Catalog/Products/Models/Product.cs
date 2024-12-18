@@ -33,13 +33,11 @@
             ArgumentException.ThrowIfNullOrEmpty(name);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
 
-            // Update Product entity fields
             Name = name;
             Category = category;
             Description = description;
             ImageFile = imageFile;
 
-            // if price has changed, raise ProductPriceChanged domain event
             if (Price != price)
             {
                 Price = price;
