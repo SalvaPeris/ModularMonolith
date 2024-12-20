@@ -1,7 +1,4 @@
-﻿using Catalog.Products.Dtos;
-using Shared.CQRS;
-
-namespace Catalog.Products.Features.GetProducts
+﻿namespace Catalog.Products.Features.GetProducts
 {
     public record GetProductsQuery()
     : IQuery<GetProductsResult>;

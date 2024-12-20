@@ -1,6 +1,4 @@
 ﻿using Catalog.Products.Exceptions;
-using FluentValidation;
-using Shared.CQRS;
 
 namespace Catalog.Products.Features.DeleteProduct
 {
