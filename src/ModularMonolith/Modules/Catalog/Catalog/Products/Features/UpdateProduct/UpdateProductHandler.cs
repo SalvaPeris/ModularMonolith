@@ -1,9 +1,4 @@
-﻿using Catalog.Products.Dtos;
-using Catalog.Products.Exceptions;
-using FluentValidation;
-using Shared.CQRS;
-
-namespace Catalog.Products.Features.UpdateProduct
+﻿namespace Catalog.Products.Features.UpdateProduct
 {
     public record UpdateProductCommand(ProductDto Product)
     : ICommand<UpdateProductResult>;
@@ -24,13 +19,8 @@ namespace Catalog.Products.Features.UpdateProduct
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
             var product = await dbContext.Products
-              .FindAsync([command.Product.Id], cancellationToken: cancellationToken);
-
-            if (product is null)
-            {
-                throw new ProductNotFoundException(command.Product.Id);
-            }
-
+              .FindAsync([command.Product.Id], cancellationToken: cancellationToken) ?? throw new ProductNotFoundException(command.Product.Id);
+            
             UpdateProductWithNewValues(product, command.Product);
 
             dbContext.Products.Update(product);

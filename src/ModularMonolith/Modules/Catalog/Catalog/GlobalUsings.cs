@@ -16,4 +16,6 @@ global using Catalog.Products.Events;
 global using Catalog.Data;
 global using Catalog.Data.Seed;
 global using Catalog.Products.Dtos;
+global using Catalog.Products.Exceptions;
+
 
