@@ -3,7 +3,9 @@ global using System.Reflection;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
 global using FluentValidation;
+global using MediatR;
 global using Mapster;
 
 global using Shared.Data;
@@ -17,5 +19,6 @@ global using Catalog.Data;
 global using Catalog.Data.Seed;
 global using Catalog.Products.Dtos;
 global using Catalog.Products.Exceptions;
+
 
 
