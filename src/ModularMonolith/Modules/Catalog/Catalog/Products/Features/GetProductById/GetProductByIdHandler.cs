@@ -17,3 +17,4 @@
             return new GetProductByIdResult(productDto);
         }
     }
+}
