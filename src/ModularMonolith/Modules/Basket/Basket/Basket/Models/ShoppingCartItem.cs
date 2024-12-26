@@ -1,0 +1,17 @@
+﻿using Shared.DDD;
+
+namespace Basket.Basket.Models
+{
+    public class ShoppingCartItem : Entity<Guid>
+    {
+        public Guid ShoppingCartId { get; private set; } = default!;
+        public Guid ProductId { get; private set; } = default!;
+        public int Quantity { get; internal set; } = default!;
+        public string Color { get; private set; } = default!;
+
+        // will comes from Catalog module
+        public decimal Price { get; private set; } = default!;
+        public string ProductName { get; private set; } = default!;
+
+    }
+}
