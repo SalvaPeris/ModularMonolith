@@ -1,6 +1,8 @@
-﻿namespace Catalog.Products.Features.GetProducts
+﻿using Shared.Pagination;
+
+namespace Catalog.Products.Features.GetProducts
 {
-    public record GetProductsResponse(IEnumerable<ProductDto> Products);
+    public record GetProductsResponse(PaginatedResult<ProductDto> Products);
 
     public class GetProductsEndpoint : ICarterModule
     {
