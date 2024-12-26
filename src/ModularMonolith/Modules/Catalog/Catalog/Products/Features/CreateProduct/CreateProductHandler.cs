@@ -16,8 +16,7 @@
         }
     }
 
-    internal class CreateProductHandler(CatalogDbContext dbContext,
-        ILogger<CreateProductHandler> logger)
+    internal class CreateProductHandler(CatalogDbContext dbContext)
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command,
