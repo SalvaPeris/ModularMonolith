@@ -20,7 +20,7 @@
         {
             var product = await dbContext.Products
               .FindAsync([command.Product.Id], cancellationToken: cancellationToken) ?? throw new ProductNotFoundException(command.Product.Id);
-            
+
             UpdateProductWithNewValues(product, command.Product);
 
             dbContext.Products.Update(product);

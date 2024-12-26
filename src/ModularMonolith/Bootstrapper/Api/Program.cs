@@ -26,4 +26,6 @@ app.UseCatalogModule()
    .UseBasketModule()
    .UseOrderModule();
 
+app.UseExceptionHandler();
+
 app.Run();
