@@ -1,6 +1,4 @@
-﻿using Basket.Data.Repository;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
@@ -13,6 +11,7 @@ namespace Basket
             IConfiguration configuration)
         {
             services.AddScoped<IBasketRepository, BasketRepository>();
+            services.Decorate<IBasketRepository, CachedBasketRepository>();
 
             var connectionString = configuration.GetConnectionString("Database");
 
