@@ -10,11 +10,4 @@
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Basket\Features\" />
-    <Folder Include="Basket\Exceptions\" />
-    <Folder Include="Basket\EventHandlers\" />
-    <Folder Include="Basket\Dtos\" />
-  </ItemGroup>
-
 </Project>
