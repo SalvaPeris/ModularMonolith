@@ -15,6 +15,8 @@ global using Shared.Data;
 global using Shared.DDD;
 global using Shared.Data.Seed;
 global using Shared.CQRS;
+global using Shared.Behaviors;
+global using Shared.Data.Interceptors;
 
 global using Catalog.Products.Models;
 global using Catalog.Products.Events;

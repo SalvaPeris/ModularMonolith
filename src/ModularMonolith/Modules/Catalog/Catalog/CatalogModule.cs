@@ -1,8 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Shared.Behaviors;
-using Shared.Data.Interceptors;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Catalog
 {
