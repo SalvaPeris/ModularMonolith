@@ -9,7 +9,7 @@ global using Microsoft.AspNetCore.Builder;
 
 global using Shared.DDD;
 global using Shared.Data.Interceptors;
-global using Shared.CQRS;
+global using Shared.Contracts.CQRS;
 
 global using Basket.Data;
 global using Basket.Basket.Dtos;

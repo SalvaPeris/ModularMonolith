@@ -14,7 +14,7 @@ global using Microsoft.AspNetCore.Routing;
 global using Shared.Data;
 global using Shared.DDD;
 global using Shared.Data.Seed;
-global using Shared.CQRS;
+global using Shared.Contracts.CQRS;
 global using Shared.Behaviors;
 global using Shared.Data.Interceptors;
 
@@ -22,5 +22,7 @@ global using Catalog.Products.Models;
 global using Catalog.Products.Events;
 global using Catalog.Data;
 global using Catalog.Data.Seed;
-global using Catalog.Products.Dtos;
 global using Catalog.Products.Exceptions;
+global using Catalog.Contracts.Products.Features.GetProductById;
+global using Catalog.Contracts.Products.Dtos;
+
