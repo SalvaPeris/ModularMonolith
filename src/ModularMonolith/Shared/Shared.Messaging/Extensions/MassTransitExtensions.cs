@@ -8,7 +8,7 @@ namespace Shared.Messaging.Extensions
     public static class MassTransitExtentions
     {
         public static IServiceCollection AddMassTransitWithAssemblies
-            (this IServiceCollection services, IConfiguration configuration, params Assembly[] assemblies)
+            (this IServiceCollection services, params Assembly[] assemblies)
         {
             services.AddMassTransit(config =>
             {

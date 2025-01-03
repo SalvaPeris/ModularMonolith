@@ -2,6 +2,7 @@ using Carter;
 using Serilog;
 using Shared.Exceptions.Handlers;
 using Shared.Extensions;
+using Shared.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
+
+builder.Services.AddMassTransitWithAssemblies(catalogAssembly, basketAssembly);
 
 builder.Services
     .AddCatalogModule(builder.Configuration)

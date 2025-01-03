@@ -12,9 +12,4 @@
     <ProjectReference Include="..\..\Catalog\Catalog.Contracts\Catalog.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Basket\EventHandlers\" />
-    <Folder Include="Basket\Features\UpdateItemPriceInBasket\" />
-  </ItemGroup>
-
 </Project>
