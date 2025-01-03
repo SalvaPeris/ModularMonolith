@@ -8,7 +8,7 @@ namespace Shared.Messaging.Extensions
     public static class MassTransitExtentions
     {
         public static IServiceCollection AddMassTransitWithAssemblies
-            (this IServiceCollection services, params Assembly[] assemblies)
+            (this IServiceCollection services, IConfiguration configuration, params Assembly[] assemblies)
         {
             services.AddMassTransit(config =>
             {
@@ -21,8 +21,13 @@ namespace Shared.Messaging.Extensions
                 config.AddSagas(assemblies);
                 config.AddActivities(assemblies);
 
-                config.UsingInMemory((context, configurator) =>
+                config.UsingRabbitMq((context, configurator) =>
                 {
+                    configurator.Host(new Uri(configuration["MessageBroker:Host"]!), host =>
+                    {
+                        host.Username(configuration["MessageBroker:UserName"]!);
+                        host.Password(configuration["MessageBroker:Password"]!);
+                    });
                     configurator.ConfigureEndpoints(context);
                 });
             });
