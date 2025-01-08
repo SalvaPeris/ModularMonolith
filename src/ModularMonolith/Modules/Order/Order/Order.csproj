@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Orders\Features\CreateOrder\" />
-    <Folder Include="Orders\Features\DeleteOrder\" />
-    <Folder Include="Orders\Features\GetOrderById\" />
-    <Folder Include="Orders\Features\GetOrders\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
   </ItemGroup>
 
