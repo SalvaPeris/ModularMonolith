@@ -33,7 +33,7 @@ namespace Order.Orders.EventHandlers
                 BillingAddress: addressDto,
                 Payment: paymentDto,
                 Items: message.Items.Select(item =>
-                        new OrderItemDto(orderId, item.ProductId, item.Quantity, item.Price)).ToList());
+                        new OrderItemDto(orderId, item.ProductId, item.Quantity, item.Price)).ToList()); // TODO: Check the actual price of the item.
 
             return new CreateOrderCommand(orderDto);
         }
