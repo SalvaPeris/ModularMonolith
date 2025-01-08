@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Basket.Basket.Features.RemoveItemFromBasket
 {
@@ -9,11 +10,13 @@ namespace Basket.Basket.Features.RemoveItemFromBasket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/basket/{userName}/items/{productId}",
-                async ([FromRoute] string userName,
-                       [FromRoute] Guid productId,
-                       ISender sender) =>
+            app.MapDelete("/basket/items/{productId}",
+                async ([FromRoute] Guid productId,
+                       ISender sender,
+                       ClaimsPrincipal user) =>
                 {
+                    var userName = user.Identity!.Name;
+
                     var command = new RemoveItemFromBasketCommand(userName, productId);
 
                     var result = await sender.Send(command);
@@ -25,7 +28,8 @@ namespace Basket.Basket.Features.RemoveItemFromBasket
             .Produces<RemoveItemFromBasketResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Remove Item From Basket")
-            .WithDescription("Remove Item From Basket");
+            .WithDescription("Remove Item From Basket")
+            .RequireAuthorization();
         }
     }
 }

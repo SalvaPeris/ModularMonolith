@@ -1,4 +1,6 @@
-﻿namespace Basket.Basket.Features.GetBasket
+﻿using System.Security.Claims;
+
+namespace Basket.Basket.Features.GetBasket
 {
     //public record GetBasketRequest(string UserName); 
     public record GetBasketResponse(ShoppingCartDto ShoppingCart);
@@ -7,8 +9,10 @@
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/basket/{userName}", async (string userName, ISender sender) =>
+            app.MapGet("/basket", async (ISender sender, ClaimsPrincipal user) =>
             {
+                var userName = user.Identity!.Name;
+
                 var result = await sender.Send(new GetBasketQuery(userName));
 
                 var response = result.Adapt<GetBasketResponse>();
@@ -18,7 +22,8 @@
             .Produces<GetBasketResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Get Basket")
-            .WithDescription("Get Basket");
+            .WithDescription("Get Basket")
+            .RequireAuthorization();
         }
     }
 }

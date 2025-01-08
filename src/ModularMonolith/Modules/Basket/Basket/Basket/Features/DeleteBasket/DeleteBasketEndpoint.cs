@@ -1,4 +1,6 @@
-﻿namespace Basket.Basket.Features.DeleteBasket
+﻿using System.Security.Claims;
+
+namespace Basket.Basket.Features.DeleteBasket
 {
     //public record DeleteBasketRequest(string UserName);
     public record DeleteBasketResponse(bool IsSuccess);
@@ -7,8 +9,10 @@
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/basket/{userName}", async (string userName, ISender sender) =>
+            app.MapDelete("/basket", async (ISender sender, ClaimsPrincipal user) =>
             {
+                var userName = user.Identity!.Name;
+
                 var result = await sender.Send(new DeleteBasketCommand(userName));
 
                 var response = result.Adapt<DeleteBasketResponse>();

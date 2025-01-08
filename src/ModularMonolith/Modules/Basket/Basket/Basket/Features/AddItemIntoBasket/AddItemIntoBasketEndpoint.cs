@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Basket.Basket.Features.AddItemIntoBasket
 {
@@ -9,11 +10,13 @@ namespace Basket.Basket.Features.AddItemIntoBasket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/basket/{userName}/items",
-                async ([FromRoute] string userName,
-                       [FromBody] AddItemIntoBasketRequest request,
-                       ISender sender) =>
+            app.MapPost("/basket/items",
+                async ([FromBody] AddItemIntoBasketRequest request,
+                       ISender sender,
+                       ClaimsPrincipal user) =>
                 {
+                    var userName = user.Identity!.Name;
+
                     var command = new AddItemIntoBasketCommand(userName, request.ShoppingCartItem);
 
                     var result = await sender.Send(command);
@@ -25,7 +28,8 @@ namespace Basket.Basket.Features.AddItemIntoBasket
             .Produces<AddItemIntoBasketResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Add Item Into Basket")
-            .WithDescription("Add Item Into Basket");
+            .WithDescription("Add Item Into Basket")
+            .RequireAuthorization();
         }
     }
 }
