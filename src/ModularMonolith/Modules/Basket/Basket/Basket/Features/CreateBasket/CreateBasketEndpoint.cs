@@ -13,7 +13,7 @@ namespace Basket.Basket.Features.CreateBasket
                 async (CreateBasketRequest request, ISender sender, ClaimsPrincipal user) =>
                 {
                     var userName = user.Identity!.Name;
-                    var updatedShoppingCart = request.ShoppingCart with { UserName = userName };
+                    var updatedShoppingCart = request.ShoppingCart with { UserName = userName! };
 
                     var command = new CreateBasketCommand(updatedShoppingCart);
 

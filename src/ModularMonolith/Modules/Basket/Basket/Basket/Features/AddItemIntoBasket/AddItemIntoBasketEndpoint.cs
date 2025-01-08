@@ -17,7 +17,7 @@ namespace Basket.Basket.Features.AddItemIntoBasket
                 {
                     var userName = user.Identity!.Name;
 
-                    var command = new AddItemIntoBasketCommand(userName, request.ShoppingCartItem);
+                    var command = new AddItemIntoBasketCommand(userName!, request.ShoppingCartItem);
 
                     var result = await sender.Send(command);
 

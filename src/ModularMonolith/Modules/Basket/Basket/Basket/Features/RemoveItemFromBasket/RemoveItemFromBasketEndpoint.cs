@@ -17,7 +17,7 @@ namespace Basket.Basket.Features.RemoveItemFromBasket
                 {
                     var userName = user.Identity!.Name;
 
-                    var command = new RemoveItemFromBasketCommand(userName, productId);
+                    var command = new RemoveItemFromBasketCommand(userName!, productId);
 
                     var result = await sender.Send(command);
 

@@ -13,7 +13,7 @@ namespace Basket.Basket.Features.DeleteBasket
             {
                 var userName = user.Identity!.Name;
 
-                var result = await sender.Send(new DeleteBasketCommand(userName));
+                var result = await sender.Send(new DeleteBasketCommand(userName!));
 
                 var response = result.Adapt<DeleteBasketResponse>();
 
@@ -22,7 +22,8 @@ namespace Basket.Basket.Features.DeleteBasket
             .Produces<DeleteBasketResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Delete Basket")
-            .WithDescription("Delete Basket");
+            .WithDescription("Delete Basket")
+            .RequireAuthorization();
         }
     }
 }

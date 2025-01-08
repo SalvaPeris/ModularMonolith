@@ -13,7 +13,7 @@ namespace Basket.Basket.Features.GetBasket
             {
                 var userName = user.Identity!.Name;
 
-                var result = await sender.Send(new GetBasketQuery(userName));
+                var result = await sender.Send(new GetBasketQuery(userName!));
 
                 var response = result.Adapt<GetBasketResponse>();
 
