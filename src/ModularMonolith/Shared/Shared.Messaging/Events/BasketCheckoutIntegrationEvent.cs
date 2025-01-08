@@ -21,5 +21,17 @@
         public string Expiration { get; set; } = default!;
         public string Cvv { get; set; } = default!;
         public int PaymentMethod { get; set; } = default!;
+
+        //Items
+        public List<ShoppingCartItemIntegration> Items { get; set; } = new();
+    }
+
+    public class ShoppingCartItemIntegration
+    {
+        public Guid ProductId { get; set; }
+        public int Quantity { get; set; }
+        public string Color { get; set; } = default!;
+        public decimal Price { get; set; }
+        public string ProductName { get; set; } = default!;
     }
 }

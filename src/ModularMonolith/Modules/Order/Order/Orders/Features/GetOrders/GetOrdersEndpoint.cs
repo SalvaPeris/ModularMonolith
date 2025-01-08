@@ -21,7 +21,8 @@ namespace Order.Orders.Features.GetOrders
             .Produces<GetOrdersResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Get Orders")
-            .WithDescription("Get Orders");
+            .WithDescription("Get Orders")
+            .RequireAuthorization();
         }
     }
 }

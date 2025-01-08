@@ -1,8 +1,11 @@
-﻿using Basket.Data.Processors;
+﻿using Basket.Basket.Mapping;
+using Basket.Basket.Models;
+using Basket.Data.Processors;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
+using Shared.Messaging.Events;
 
 namespace Basket
 {
@@ -27,6 +30,8 @@ namespace Basket
 
             services.AddHostedService<OutboxProcessor>();
 
+            BasketCheckoutMapping.Mapping();
+
             return services;
         }
 
@@ -35,5 +40,7 @@ namespace Basket
             app.UseMigration<BasketDbContext>();
             return app;
         }
+
+
     }
 }

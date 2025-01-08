@@ -1,6 +1,8 @@
 ﻿namespace Order.Orders.Features.CreateOrder
 {
-    public record CreateOrderRequest(OrderDto Order);
+    // Commented out since basket/checkout needs to perform this process.
+
+    /*public record CreateOrderRequest(OrderDto Order);
     public record CreateOrderResponse(Guid Id);
 
     public class CreateOrderEndpoint : ICarterModule
@@ -23,5 +25,5 @@
             .WithSummary("Create Order")
             .WithDescription("Create Order");
         }
-    }
+    }*/
 }

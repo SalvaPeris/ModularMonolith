@@ -1,5 +1,6 @@
 ﻿using Basket.Basket.Exceptions;
 using Basket.Basket.Models;
+using Microsoft.AspNetCore.Http.Features;
 using Shared.Messaging.Events;
 using System.Text.Json;
 
@@ -36,6 +37,7 @@ namespace Basket.Basket.Features.CheckoutBasket
                 // Set total price on basket checkout event message
                 var eventMessage = command.BasketCheckout.Adapt<BasketCheckoutIntegrationEvent>();
                 eventMessage.TotalPrice = basket.TotalPrice;
+                eventMessage.Items = basket.Items.Adapt<List<ShoppingCartItemIntegration>>();
 
                 // Write a message to the outbox
                 var outboxMessage = new OutboxMessage
